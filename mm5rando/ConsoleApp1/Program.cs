@@ -9,9 +9,8 @@ namespace RandomizerConsole
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            Randomizer.RandomizeRom("foo");
+        static void Main(string[] args) {
+            Randomizer rng = new Randomizer();
         }
     }
 }
