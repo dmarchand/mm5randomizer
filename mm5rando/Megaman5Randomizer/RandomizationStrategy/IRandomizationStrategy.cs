@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using RomWriter;
+using System;
 
 namespace Megaman5Randomizer.RandomizationStrategy
 {
-    interface IRandomizationStrategy
+    public interface IRandomizationStrategy
     {
+        void Randomize(Random random, RomPatcher patcher);
     }
 }

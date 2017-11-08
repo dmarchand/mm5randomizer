@@ -1,5 +1,6 @@
 ﻿using System;
 using RomWriter;
+using Megaman5Randomizer;
 
 namespace ConsoleApp2
 {
@@ -7,9 +8,8 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
-            RomPatcher patcher = new RomPatcher();
-            patcher.AddRomModification(2960, 0x3A); // Should be first gravity man enemy
-            patcher.ApplyRomPatch("test.nes");
+            Randomizer randomizer = new Randomizer();
+            randomizer.RandomizeRom("test.nes");
         }
     }
 }

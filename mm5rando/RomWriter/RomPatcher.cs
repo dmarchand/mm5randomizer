@@ -14,9 +14,11 @@ namespace RomWriter
     public class RomPatcher
     {
         Dictionary<int, RomWriteEntry> RomModifications { get; set; }
+        string RomPath { get; set; }
 
-        public RomPatcher() {
+        public RomPatcher(string romPath) {
             RomModifications = new Dictionary<int, RomWriteEntry>();
+            RomPath = romPath;
         }
 
         public void AddRomModification(int address, byte value, string info ="") {
@@ -29,8 +31,15 @@ namespace RomWriter
             }
         }
 
-        public void ApplyRomPatch(string romPath) {
-            using (var stream = new FileStream(romPath, FileMode.Open, FileAccess.ReadWrite)) {
+        public byte GetByteAtAddress(int address) {
+            using (var stream = new FileStream(RomPath, FileMode.Open, FileAccess.Read)) {
+                stream.Position = address;
+                return (byte)stream.ReadByte();
+            }
+        }
+
+        public void ApplyRomPatch() {
+            using (var stream = new FileStream(RomPath, FileMode.Open, FileAccess.ReadWrite)) {
 
                 foreach (KeyValuePair<int, RomWriteEntry> kvp in RomModifications) {
                     stream.Position = kvp.Key;
