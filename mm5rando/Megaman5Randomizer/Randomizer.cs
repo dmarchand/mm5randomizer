@@ -23,6 +23,7 @@ namespace Megaman5Randomizer
             RomPatcher patcher = new RomPatcher(path);
             randomizers = new List<IRandomizationStrategy>();
             randomizers.Add(new NormalEnemyRandomizer());
+            randomizers.Add(new WeaponGetRandomizer());
 
             RunRandomizers(patcher);
 
