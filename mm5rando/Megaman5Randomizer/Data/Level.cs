@@ -10,6 +10,7 @@ namespace Megaman5Randomizer.Data
         private const int ENEMY_DATA_LENGTH = 80;
 
         const int WEAPON_GET_OFFSET = 0x2EF29;
+
         public string Name { get; set; }
         public int StartAddress { get; set; }
 
@@ -27,7 +28,7 @@ namespace Megaman5Randomizer.Data
             StartAddress = startAddress;
             EnemyDataAddress = enemyDataAddress;
             Name = name;
-            WeaponGetIndex = weaponGetIndex + WEAPON_GET_OFFSET;
+            WeaponGetIndex = weaponGetIndex;
         }
     }
 }

@@ -10,10 +10,14 @@ namespace Megaman5Randomizer.RandomizationStrategy
 {
     public class WeaponGetRandomizer : IRandomizationStrategy
     {
-        private const int ROCKMANV_WEAPON_REWARD_ADDRESS = 0x03af29;
-        private List<Weapon> remainingWeapons = WeaponGet.WeaponData;
-        private Dictionary<Level, Weapon> standardWeaponRewards = new Dictionary<Level, Weapon>();
-        private Dictionary<Level, Weapon> bonusWeaponRewards = new Dictionary<Level, Weapon>();
+        private const int ROCKMANV_WEAPON_REWARD_ADDRESS = 0x03af29; // This determines what weapon is awarded when letters are collected
+        private const int WEAPON_GET_MAP_BASE = 0x02EF0C; // The location of the weapon get offset map
+        private const int WEAPON_GET_OFFSET_BASE = 0x02EF14; // The location that each weapon get offset adds to
+        private const string WEAPON_GET_SINGLE_FORMAT = "YOU GOT {0}.";
+        private const string WEAPON_GET_DOUBLE_FORMAT = "YOU GOT {0}\\+ AND {1}.";
+
+        private List<Weapon> remainingWeapons = new List<Weapon>(WeaponGet.WeaponData);
+        private Dictionary<Level, List<Weapon>> weaponRewards = new Dictionary<Level, List<Weapon>>();
         private Weapon letterRewardWeapon;
 
         public void Randomize(Random random, RomPatcher patcher) {
@@ -30,7 +34,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
             List<Weapon> eightWeaponsToSprinkle = remainingWeapons.OrderBy(x => random.Next()).Take(8).ToList();
             eightWeaponsToSprinkle.ForEach(weapon => {
                 Level stageToInsert = remainingRegularStages[random.Next(remainingRegularStages.Count)];
-                standardWeaponRewards.Add(stageToInsert, weapon);
+                weaponRewards.Add(stageToInsert, new List<Weapon>() { weapon });
                 remainingWeapons.Remove(weapon);
                 remainingRegularStages.Remove(stageToInsert);
             });
@@ -39,18 +43,13 @@ namespace Megaman5Randomizer.RandomizationStrategy
             remainingRegularStages = new List<Level>(Levels.RobotMasterLevelData);
             remainingWeapons.ForEach(weapon => {
                 Level stageToInsert = remainingRegularStages[random.Next(remainingRegularStages.Count)];
-                bonusWeaponRewards.Add(stageToInsert, weapon);
+                weaponRewards[stageToInsert].Add(weapon);
                 remainingWeapons.Remove(weapon);
                 remainingRegularStages.Remove(stageToInsert);
             });
 
             WriteRockmanVRewardWeapon(letterRewardWeapon, patcher);
-                // byte value = patcher.GetByteAtAddress(level.WeaponGetIndex);
-                // Weapon weapon = remainingWeapons[random.Next(remainingWeapons.Count)];
-
-                // patcher.AddRomModification(level.WeaponGetIndex, 0x01, weapon.Name);
-                // patcher.AddRomModification(level.WeaponGetIndex + 0x01, 0x0B, "test");
-                // Console.Out.WriteLine("Wrote New Weapon: " + weapon.Name + " at addr: " + level.WeaponGetIndex);                            
+            WriteBossRewards(patcher);
         }
 
         void WriteRockmanVRewardWeapon(Weapon weapon, RomPatcher patcher) {
@@ -58,6 +57,45 @@ namespace Megaman5Randomizer.RandomizationStrategy
             byte valueToWrite = InMemoryWeapon.WeaponData.Where(inMemWeapon => inMemWeapon.Name == weapon.Name).First().Value;
             patcher.AddRomModification(ROCKMANV_WEAPON_REWARD_ADDRESS, valueToWrite, weapon.Name);
             Console.Out.WriteLine("Wrote weapon to ROCKMANV reward: " + weapon.Name);
+        }
+
+        void WriteBossRewards(RomPatcher patcher) {
+            int totalOffset = 0; // Need to keep track of how far we've gone
+            weaponRewards.Keys.OrderBy(x => x.WeaponGetIndex);
+
+            foreach (var kvp in weaponRewards) {
+                Level level = kvp.Key;
+                List<Weapon> rewards = kvp.Value;
+
+                // Write the offset map for this level
+                int offsetToWriteTo = WEAPON_GET_MAP_BASE + level.WeaponGetIndex;
+                patcher.AddRomModification(offsetToWriteTo, (byte)totalOffset, "Offset write for: " + level.Name);
+
+                string weaponGetString = String.Empty;
+
+                if(rewards.Count == 1) {
+                    Weapon reward = rewards[0];
+                    weaponGetString = string.Format(WEAPON_GET_SINGLE_FORMAT, reward.Name.ToUpper());
+                } else {
+                    weaponGetString = string.Format(WEAPON_GET_DOUBLE_FORMAT, rewards[0].Name.ToUpper(), rewards[1].Name.ToUpper());
+                }
+
+                List<int> byteEncodedWeaponGetString = TextMapper.StringToHexValues(weaponGetString);
+                int currentLocation = WEAPON_GET_OFFSET_BASE + totalOffset;
+
+                // First write the "WEAPON GET" text
+                byteEncodedWeaponGetString.ForEach(letter => {
+                    patcher.AddRomModification(currentLocation, (byte)letter, "Weapon get: " + letter);
+                    currentLocation++;
+                    totalOffset++;
+                });
+
+                // Now write the weapons themselves
+                patcher.AddRomModification(currentLocation, rewards[0].Value, "Weapon get weapon: " + rewards[0].Value);
+                patcher.AddRomModification(currentLocation + 1, rewards.Count == 1 ? (byte)0x00 : rewards[1].Value, "Bonus weapon");
+                totalOffset += 2;
+            }
+            Console.Write("Foo");
         }
     }
 }

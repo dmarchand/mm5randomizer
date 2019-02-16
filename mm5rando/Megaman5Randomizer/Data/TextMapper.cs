@@ -9,6 +9,7 @@ namespace Megaman5Randomizer.Data
     {
         #region CharMap
         static Dictionary<char, int> textMapping = new Dictionary<char, int>() {
+            { ' ', 0x01 },
             { '0', 0x02 },
             { '1', 0x03 },
             { '2', 0x04 },
@@ -55,6 +56,8 @@ namespace Megaman5Randomizer.Data
             { ')', 0x2D },
             { '\'', 0x2E },
             { '-', 0x2F },
+            { '\\', 0x2C },
+            { '+', 0x5B }
         };
         #endregion
 
@@ -66,7 +69,7 @@ namespace Megaman5Randomizer.Data
             return textMapping.FirstOrDefault(key => key.Value == hexValue).Key;
         }
 
-        public List<int> StringToHexValues(string stringToConvert) {
+        public static List<int> StringToHexValues(string stringToConvert) {
             List<int> result = new List<int>();
             stringToConvert.ToList().ForEach(x => result.Add(x));
             return result;

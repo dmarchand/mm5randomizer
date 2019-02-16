@@ -16,7 +16,6 @@ namespace Megaman5Randomizer.Data
             new Weapon(0x07, "Gravity Hold"),
             new Weapon(0x08, "Charge Kick"),
             new Weapon(0x09, "Star Crash"),
-            new Weapon(0x0A, "Rush Coil"),
             new Weapon(0x0B, "Rush Jet"),
             new Weapon(0x0C, "Beat")
         };
