@@ -6,8 +6,8 @@ namespace Megaman5Randomizer.Data
 {
     public class Level
     {
-        const int ENEMY_DATA_OFFSET = 2960;
-        const int ENEMY_DATA_LENGTH = 80;
+        private const int ENEMY_DATA_OFFSET = 2960;
+        private const int ENEMY_DATA_LENGTH = 80;
 
         const int WEAPON_GET_OFFSET = 0x2EF29;
         public string Name { get; set; }

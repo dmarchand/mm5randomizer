@@ -14,7 +14,7 @@ Starting at 0x2EF0C, each byte contains a value that serves as an offset from 0x
 In RAM, the ROCKMANV letter status is stored in a byte at $006D. Each bit represents a letter, in reverse (thanks endian-ness). For example, 10111111 would mean you have ROCKMA_V unlocked. Loading the menu will display the letter status.
 
 ## Awarding a Weapon That Isn't Beat When ROCKMANV is Collected
-When Megaman picks up a letter, a routine is called at $AF08. This routine checks the value at $006D in RAM, and compares it to 0xFF (1111111). If true, the value at 0x03af28 in the ROM is read, and that value in memory is set to 0x9C. As per the Weapon Unlock Status section above, this will cause whatever weapon is at that location in the ROM to be unlocked! For example, setting the value to 0xBB will unlock Rush Jet, since Rush Jet's weapon energy is stored at this location.
+When Megaman picks up a letter, a routine is called at $AF08. This routine checks the value at $006D in RAM, and compares it to 0xFF (1111111). If true, the value at 0x03AF29 in the ROM is read, and that value in memory is set to 0x9C. As per the Weapon Unlock Status section above, this will cause whatever weapon is at that location in the ROM to be unlocked! For example, setting the value to 0xBB will unlock Rush Jet, since Rush Jet's weapon energy is stored at this location.
 
 However, there's still a problem. If you do this, the menu will still say "ROCKMANV", but show all 8 letters unlocked. This also means that if you unlock Beat later via other means, the menu will look pretty ugly, since you'll have Beat's graphic overlayed on top of ROCKMANV. We can fix this too, though!
 

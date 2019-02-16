@@ -10,7 +10,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
     public class NormalEnemyRandomizer : IRandomizationStrategy
     {
         public void Randomize(Random random, RomPatcher patcher) {
-            Levels.LevelData.ForEach(level => {
+            Levels.RobotMasterLevelData.ForEach(level => {
                 ReplaceEnemiesRandomly(level, random, patcher);    
             });
         }
