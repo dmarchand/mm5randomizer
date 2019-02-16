@@ -8,8 +8,12 @@ namespace ConsoleApp2
     {
         static void Main(string[] args)
         {
+            Config config = new Config();
+            config.RandomizeEnemies = false;
+            config.RandomizeWeaponRewards = true;
+            config.RandomizeBeatReward = true;
             Randomizer randomizer = new Randomizer();
-            randomizer.RandomizeRom("test.nes");
+            randomizer.RandomizeRom(config, "test.nes");
         }
     }
 }

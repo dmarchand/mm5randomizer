@@ -17,13 +17,19 @@ namespace Megaman5Randomizer
         }
 
         List<IRandomizationStrategy> randomizers;
-        public void RandomizeRom(string path) {
+        public void RandomizeRom(Config config, string path) {
             InitRNG();
 
             RomPatcher patcher = new RomPatcher(path);
             randomizers = new List<IRandomizationStrategy>();
-            randomizers.Add(new NormalEnemyRandomizer());
-            randomizers.Add(new WeaponGetRandomizer());
+            if (config.RandomizeEnemies) {
+                randomizers.Add(new NormalEnemyRandomizer());
+            }
+
+            if (config.RandomizeWeaponRewards) {
+                randomizers.Add(new WeaponGetRandomizer());
+            }
+            
 
             RunRandomizers(patcher);
 
