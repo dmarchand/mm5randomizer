@@ -23,3 +23,8 @@ At $8488, there's a routine that controls the ROCKMANV display in the menu. The 
 At $84CC, we'll find a `STA $00BC` call. This takes the current value and stuffs it into whatever is at $00BC. That's beat's energy, and we don't want to mess with that. Two lines above this, we can see the value get loaded via `LDA $00BC` again, and a bitwise OR occurs on it with 0x80. This will cause Beat to have 0 energy, but still be unlocked, oops! If we modify these calls, we can fix this. Set the values at 0x0024D4 and 0x0024D0 to the memory address of the weapon we want to unlock, instead. Beat will still render on the menu unfortunately, but now the weapon cannot be selected, so we're making progress! At this point, if you unlock Beat normally, everything will be ok.
 
 There is a workaround here. At $8488, we can return to `LDA $00BC` instead of `LDA $00XX`. This will result in ROCKMANV rendering fully gold when our new weapon is unlocked, but disappearing entirely once Beat himself is earned! It's not perfect, but I think it's the most workable solution without re-writing the menu code. One caveat: If you unlock Beat prior to collecting all the letters, they'll still disappear. Unfortunately, like the issue above, we can't really fix this without re-coding the menu and potentially adding an additional menu slot.
+
+# Vulnerability Offets
+Gravityman offset: 81
+Napalmman offset: 89
+Stoneman offset: 69
