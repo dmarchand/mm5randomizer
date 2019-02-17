@@ -14,7 +14,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
         private const int WEAPON_GET_MAP_BASE = 0x02EF0C; // The location of the weapon get offset map
         private const int WEAPON_GET_OFFSET_BASE = 0x02EF14; // The location that each weapon get offset adds to
         private const string WEAPON_GET_SINGLE_FORMAT = "YOU GOT {0}.";
-        private const string WEAPON_GET_DOUBLE_FORMAT = "YOU GOT {0}\\+ AND {1}.";
+        private const string WEAPON_GET_DOUBLE_FORMAT = "YOU GOT {0}+;:AND+;[ {1}.";
 
         private List<Weapon> remainingWeapons = new List<Weapon>(WeaponGet.WeaponData);
         private Dictionary<Level, List<Weapon>> weaponRewards = new Dictionary<Level, List<Weapon>>();
@@ -80,12 +80,12 @@ namespace Megaman5Randomizer.RandomizationStrategy
                     weaponGetString = string.Format(WEAPON_GET_DOUBLE_FORMAT, rewards[0].Name.ToUpper(), rewards[1].Name.ToUpper());
                 }
 
-                List<int> byteEncodedWeaponGetString = TextMapper.StringToHexValues(weaponGetString);
+                List<byte> byteEncodedWeaponGetString = TextMapper.StringToHexValues(weaponGetString);
                 int currentLocation = WEAPON_GET_OFFSET_BASE + totalOffset;
 
                 // First write the "WEAPON GET" text
                 byteEncodedWeaponGetString.ForEach(letter => {
-                    patcher.AddRomModification(currentLocation, (byte)letter, "Weapon get: " + letter);
+                    patcher.AddRomModification(currentLocation, letter, "Weapon get: " + letter);
                     currentLocation++;
                     totalOffset++;
                 });

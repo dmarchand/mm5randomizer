@@ -8,56 +8,59 @@ namespace Megaman5Randomizer.Data
     class TextMapper
     {
         #region CharMap
-        static Dictionary<char, int> textMapping = new Dictionary<char, int>() {
-            { ' ', 0x01 },
-            { '0', 0x02 },
-            { '1', 0x03 },
-            { '2', 0x04 },
-            { '3', 0x05 },
-            { '4', 0x06 },
-            { '5', 0x07 },
-            { '6', 0x08 },
-            { '7', 0x09 },
-            { '8', 0x0A },
-            { '9', 0x0B },
-            { 'A', 0x0C },
-            { 'B', 0x0D },
-            { 'C', 0x0E },
-            { 'D', 0x0F },
-            { 'E', 0x10 },
-            { 'F', 0x11 },
-            { 'G', 0x12 },
-            { 'H', 0x13 },
-            { 'I', 0x14 },
-            { 'J', 0x15 },
-            { 'K', 0x16 },
-            { 'L', 0x17 },
-            { 'M', 0x18 },
-            { 'N', 0x19 },
-            { 'O', 0x1A },
-            { 'P', 0x1B },
-            { 'Q', 0x1C },
-            { 'R', 0x1D },
-            { 'S', 0x1E },
-            { 'T', 0x1F },
-            { 'U', 0x20 },
-            { 'V', 0x21 },
-            { 'W', 0x22 },
-            { 'X', 0x23 },
-            { 'Y', 0x24 },
-            { 'Z', 0x25 },
-            { '.', 0x26 },
+        // NOTE: 5C 2B 2E = newline, 5C 2B 4B = bigger newline
+        static Dictionary<char, byte> textMapping = new Dictionary<char, byte>() {
+            { ' ', 0x20 },
+            { '0', 0x30 },
+            { '1', 0x31 },
+            { '2', 0x32 },
+            { '3', 0x33 },
+            { '4', 0x34 },
+            { '5', 0x35 },
+            { '6', 0x36 },
+            { '7', 0x37 },
+            { '8', 0x38 },
+            { '9', 0x39 },
+            { 'A', 0x41 },
+            { 'B', 0x42 },
+            { 'C', 0x43 },
+            { 'D', 0x44 },
+            { 'E', 0x45 },
+            { 'F', 0x46 },
+            { 'G', 0x47 },
+            { 'H', 0x48 },
+            { 'I', 0x49 },
+            { 'J', 0x4A },
+            { 'K', 0x4B },
+            { 'L', 0x4C },
+            { 'M', 0x4D },
+            { 'N', 0x4E },
+            { 'O', 0x4F },
+            { 'P', 0x50 },
+            { 'Q', 0x51 },
+            { 'R', 0x52 },
+            { 'S', 0x53 },
+            { 'T', 0x54 },
+            { 'U', 0x55 },
+            { 'V', 0x56 },
+            { 'W', 0x57 },
+            { 'X', 0x58 },
+            { 'Y', 0x59 },
+            { 'Z', 0x60 },
+            { '.', 0x2E },
             { ',', 0x27 },
             { '\"', 0x28 },
-            { '!', 0x29 },
+            { '!', 0x21 },
             { '?', 0x2A },
             { '&', 0x2B },
             { '(', 0x2C },
             { ')', 0x2D },
             { '\'', 0x2E },
             { '-', 0x2F },
-            { '\\', 0x2C },
-            { '+', 0x5B }
+            { '+', 0x5C },
+            { ';', 0x2B },
+            { ':', 0x2E },
+            { '[', 0x4B }
         };
         #endregion
 
@@ -69,9 +72,9 @@ namespace Megaman5Randomizer.Data
             return textMapping.FirstOrDefault(key => key.Value == hexValue).Key;
         }
 
-        public static List<int> StringToHexValues(string stringToConvert) {
-            List<int> result = new List<int>();
-            stringToConvert.ToList().ForEach(x => result.Add(x));
+        public static List<byte> StringToHexValues(string stringToConvert) {
+            List<byte> result = new List<byte>();
+            stringToConvert.ToList().ForEach(x => result.Add(textMapping[x]));
             return result;
         }
     }
