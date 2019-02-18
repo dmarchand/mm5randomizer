@@ -31,9 +31,9 @@ namespace Megaman5Randomizer.RandomizationStrategy
                     GameObject weakMaster = mastersWithoutWeakness[random.Next(mastersWithoutWeakness.Count)];
                     int bossOffset = weapon.VulnerabilityTableOffset + weakMaster.ObjectId;
                     patcher.AddRomModification(bossOffset, 0x04, "Vuln for: " + weakMaster.Name + " for weapon type: " + weapon.Name); // Weak bosses take 4 damage
-
+                    Console.Out.WriteLine("Robot Master: " + weakMaster.Name + " now weak to: " + weapon.Name);
                     mastersWithoutWeakness.Remove(weakMaster);
-                    otherBosses.Remove(weakMaster);
+                    otherBosses.RemoveAll(master => master.Name == weakMaster.Name);
                 }
 
                 
@@ -42,6 +42,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
                 otherBosses.ForEach(boss => {
                     int offset = weapon.VulnerabilityTableOffset + boss.ObjectId;
                     patcher.AddRomModification(offset, (byte)random.Next(0, 2), "Vuln for: " + boss.Name + " for weapon type: " + weapon.Name); // Strong bosses take 0 or 1 damage
+                    Console.Out.WriteLine("Robot Master: " + boss.Name + " now strong to: " + weapon.Name);
                 });
             });
 
