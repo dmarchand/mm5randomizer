@@ -5,6 +5,6 @@ namespace Megaman5Randomizer.RandomizationStrategy
 {
     public interface IRandomizationStrategy
     {
-        void Randomize(Random random, RomPatcher patcher);
+        void Randomize(Random random, RomPatcher patcher, Config config);
     }
 }

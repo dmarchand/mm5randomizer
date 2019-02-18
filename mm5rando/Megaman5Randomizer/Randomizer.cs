@@ -29,9 +29,13 @@ namespace Megaman5Randomizer
             if (config.RandomizeWeaponRewards) {
                 randomizers.Add(new WeaponGetRandomizer());
             }
+
+            if(config.RandomizeVulnerability) {
+                randomizers.Add(new WeaknessRandomizer());
+            }
             
 
-            RunRandomizers(patcher);
+            RunRandomizers(patcher, config);
 
             patcher.ApplyRomPatch();
         }
@@ -44,9 +48,9 @@ namespace Megaman5Randomizer
             RNG = new Random(Seed);
         }
 
-        void RunRandomizers(RomPatcher patcher) {
+        void RunRandomizers(RomPatcher patcher, Config config) {
             randomizers.ForEach(randomizer => {
-                randomizer.Randomize(RNG, patcher);
+                randomizer.Randomize(RNG, patcher, config);
             });
         }
     }

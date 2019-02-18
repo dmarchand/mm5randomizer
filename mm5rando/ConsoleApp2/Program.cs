@@ -12,6 +12,7 @@ namespace ConsoleApp2
             config.RandomizeEnemies = false;
             config.RandomizeWeaponRewards = true;
             config.RandomizeBeatReward = true;
+            config.RandomizeVulnerability = true;
             Randomizer randomizer = new Randomizer();
             System.IO.File.Copy("base.nes", "test.nes", true);
             randomizer.RandomizeRom(config, "test.nes");

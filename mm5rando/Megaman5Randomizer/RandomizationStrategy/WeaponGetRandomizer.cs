@@ -20,7 +20,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
         private Dictionary<Level, List<Weapon>> weaponRewards = new Dictionary<Level, List<Weapon>>();
         private Weapon letterRewardWeapon;
 
-        public void Randomize(Random random, RomPatcher patcher) {
+        public void Randomize(Random random, RomPatcher patcher, Config config) {
             ReplaceWeaponsRandomly(random, patcher);    
         }
 
