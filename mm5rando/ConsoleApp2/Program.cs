@@ -9,7 +9,7 @@ namespace ConsoleApp2
         static void Main(string[] args)
         {
             Config config = new Config();
-            config.RandomizeEnemies = false;
+            config.RandomizeEnemies = true;
             config.RandomizeWeaponRewards = true;
             config.RandomizeBeatReward = true;
             config.RandomizeVulnerability = true;

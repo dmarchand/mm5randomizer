@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using RomWriter;
+using System.Linq;
 
 namespace Megaman5Randomizer.RandomizationStrategy
 {
@@ -16,23 +17,57 @@ namespace Megaman5Randomizer.RandomizationStrategy
         }
 
         void ReplaceEnemiesRandomly(Level level, Random random, RomPatcher patcher) {
-            int bytesPerEnemy = 1;
+            int enemyIndex = 0;
+            int currentScreen = 0;
+            int previousScreen = 0;
+            bool screenHasHighCostEnemy = false;
 
-            for(int address = level.EnemyDataAddress; address <= level.EnemyDataAddressEnd; address += bytesPerEnemy) {
-                byte value = patcher.GetByteAtAddress(address);
+            for(int address = level.EnemyDataAddress; address <= level.EnemyDataAddressEnd; address += 1) {
+                byte enemyIDValue = patcher.GetByteAtAddress(address);
+                byte screenValue = patcher.GetByteAtAddress(level.ScreenNumberStart + enemyIndex);
+                int yPosLocation = level.YPosStart + enemyIndex;
+                byte yPos = patcher.GetByteAtAddress(yPosLocation);
 
-                if (!BannedEnemies.EnemyData.Exists(banned => banned.Value == value)) {
-                    Enemy enemy = null;
-                    if (FlyingEnemies.EnemyData.Exists(flying => flying.Value == value)) {
-                        int index = random.Next(0, FlyingEnemies.EnemyData.Count);
-                        enemy = FlyingEnemies.EnemyData[index];
+                currentScreen = screenValue;
+
+                if(currentScreen != previousScreen) {
+                    screenHasHighCostEnemy = false;
+                }
+
+                if (Enemies.EnemyData.Exists(enemy => enemy.Value == enemyIDValue)) {
+                    Enemy enemyToReplace = Enemies.EnemyData.Where(enemy => enemy.Value == enemyIDValue).First();
+                    List<Enemy> validEnemies = null;
+
+                    if(enemyToReplace.IsFlyingOnly) {
+                        validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsFlyingOnly).ToList();
+                    } else if(enemyToReplace.IsInverted) {
+                        validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsInverted).ToList();
+                    } else if(enemyToReplace.IsJetSkiOnly) {
+                        validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsJetSkiOnly).ToList();
+                    } else if(enemyToReplace.IsUnderwaterOnly) {
+                        validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsUnderwaterOnly).ToList();
                     } else {
-                        int index = random.Next(0, NormalEnemies.EnemyData.Count);
-                        enemy = NormalEnemies.EnemyData[index];
+                        validEnemies = Enemies.EnemyData.Where(enemy => !enemy.IsFlyingOnly && !enemy.IsInverted && !enemy.IsJetSkiOnly && !enemy.IsUnderwaterOnly).ToList();
                     }
-                    patcher.AddRomModification(address, enemy.Value, enemy.Name);
-                    Console.Out.WriteLine("Wrote Enemy: " + enemy.Name + " at addr: " + address);
-                }             
+
+                    if(screenHasHighCostEnemy) {
+                        validEnemies.RemoveAll(enemy => enemy.IsHighRenderCost);
+                    }
+
+                    Enemy selectedEnemy = validEnemies[random.Next(0, validEnemies.Count)];
+
+                    if(selectedEnemy.IsHighRenderCost) {
+                        screenHasHighCostEnemy = true;
+                    }
+
+                    byte newYPos = (byte)(yPos + selectedEnemy.YOffset - enemyToReplace.YOffset);
+                    
+                    patcher.AddRomModification(address, selectedEnemy.Value, selectedEnemy.Name);
+                    patcher.AddRomModification(yPosLocation, newYPos, selectedEnemy.Name);
+                    //Console.Out.WriteLine("Wrote Enemy: " + selectedEnemy.Name + " at addr: " + address + " at new YPos: " + newYPos);
+                }
+                enemyIndex++;
+                previousScreen = currentScreen;
             }
         }
     }
