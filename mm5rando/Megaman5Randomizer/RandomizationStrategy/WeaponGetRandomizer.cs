@@ -30,7 +30,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
             remainingWeapons.Remove(letterRewardWeapon);
 
             // Select weapons for each stage
-            List<Level> remainingRegularStages = new List<Level>(Levels.RobotMasterLevelData);
+            List<Level> remainingRegularStages = new List<Level>(Levels.LevelData.Where(level => !level.Name.Contains("Wily") && !level.Name.Contains("Protoman")));
             List<Weapon> eightWeaponsToSprinkle = remainingWeapons.OrderBy(x => random.Next()).Take(8).ToList();
             eightWeaponsToSprinkle.ForEach(weapon => {
                 Level stageToInsert = remainingRegularStages[random.Next(remainingRegularStages.Count)];
@@ -40,7 +40,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
             });
 
             // Pick two stages for a bonus weapon
-            remainingRegularStages = new List<Level>(Levels.RobotMasterLevelData);
+            remainingRegularStages = new List<Level>(Levels.LevelData.Where(level => !level.Name.Contains("Wily") && !level.Name.Contains("Protoman")));
             remainingWeapons.ForEach(weapon => {
                 Level stageToInsert = remainingRegularStages[random.Next(remainingRegularStages.Count)];
                 weaponRewards[stageToInsert].Add(weapon);

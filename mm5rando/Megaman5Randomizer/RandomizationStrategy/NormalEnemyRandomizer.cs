@@ -11,7 +11,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
     public class NormalEnemyRandomizer : IRandomizationStrategy
     {
         public void Randomize(Random random, RomPatcher patcher, Config config) {
-            Levels.RobotMasterLevelData.ForEach(level => {
+            Levels.LevelData.ForEach(level => {
                 ReplaceEnemiesRandomly(level, random, patcher);    
             });
         }
@@ -47,7 +47,11 @@ namespace Megaman5Randomizer.RandomizationStrategy
                     } else if(enemyToReplace.IsUnderwaterOnly) {
                         validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsUnderwaterOnly).ToList();
                     } else {
-                        validEnemies = Enemies.EnemyData.Where(enemy => !enemy.IsFlyingOnly && !enemy.IsInverted && !enemy.IsJetSkiOnly && !enemy.IsUnderwaterOnly).ToList();
+                        validEnemies = Enemies.EnemyData.Where(enemy => !enemy.IsFlyingOnly
+                            && !enemy.IsInverted 
+                            && !enemy.IsJetSkiOnly 
+                            && !enemy.IsUnderwaterOnly 
+                            && (!enemy.Name.Contains("Spike Wheel") || random.Next(0,2) == 1)).ToList(); // Too many spike wheels, weed them out a bit
                     }
 
                     if(screenHasHighCostEnemy) {
