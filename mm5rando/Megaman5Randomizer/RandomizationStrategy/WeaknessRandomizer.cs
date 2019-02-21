@@ -4,6 +4,7 @@ using System.Text;
 using RomWriter;
 using Megaman5Randomizer.Data;
 using System.Linq;
+using Megaman5Randomizer.Data.Objects;
 
 namespace Megaman5Randomizer.RandomizationStrategy
 {

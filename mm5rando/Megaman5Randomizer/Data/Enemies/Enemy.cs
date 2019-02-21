@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Megaman5Randomizer.Data
+namespace Megaman5Randomizer.Data.Enemies
 {
     public class Enemy
     {
@@ -16,8 +16,9 @@ namespace Megaman5Randomizer.Data
         public bool IsBannedFromRandomization { get; set; }
         public bool IsUnderwaterOnly { get; set; }
         public bool IsHighRenderCost { get; set; }
+        public bool IsBigBoy { get; set; }
 
-        public Enemy(byte value, string name, int yOffset, bool hasGravity, bool isFlyingOnly, bool isInverted, bool isJetSkiOnly, bool isUnderwaterOnly, bool isHighRenderCost, bool isBannedFromRandomization = false) {
+        public Enemy(byte value, string name, int yOffset, bool hasGravity, bool isFlyingOnly, bool isInverted, bool isJetSkiOnly, bool isUnderwaterOnly, bool isHighRenderCost, bool isBigBoy = false, bool isBannedFromRandomization = false) {
             Value = value;
             Name = name;
             YOffset = yOffset;
@@ -28,6 +29,7 @@ namespace Megaman5Randomizer.Data
             IsUnderwaterOnly = isUnderwaterOnly;
             IsHighRenderCost = isHighRenderCost;
             IsBannedFromRandomization = isBannedFromRandomization;
+            IsBigBoy = isBigBoy;
 
         }
     }

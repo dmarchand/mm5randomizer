@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Megaman5Randomizer.Data
+namespace Megaman5Randomizer.Data.Objects
 {
     public class BossObjects
     {
