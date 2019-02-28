@@ -26,7 +26,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
                 byte screenValue = patcher.GetByteAtAddress(level.ScreenNumberStart + enemyIndex);
                 if (screenValue != currentScreen) {
                     List<int> shuffledAddresses = addressesToShuffle.OrderBy((item) => random.Next()).ToList();
-                    List<KeyValuePair<byte, byte>> addedEnemiesToXPos = new List<KeyValuePair<byte, byte>>();
+                    List<KeyValuePair<Enemy, byte>> addedEnemiesToXPos = new List<KeyValuePair<Enemy, byte>>();
 
                     shuffledAddresses.ForEach(currentAddress => {
                         byte enemyIDValue = patcher.GetByteAtAddress(currentAddress);
@@ -57,29 +57,38 @@ namespace Megaman5Randomizer.RandomizationStrategy
                                     && !enemy.IsJetSkiOnly
                                     && !enemy.IsUnderwaterOnly
                                     && !enemy.IsBigBoy
-                                    && (!enemy.Name.Contains("Spike Wheel") || random.Next(0, 2) == 1)).ToList(); // Too many spike wheels, weed them out a bit
+                                    && (!enemy.Name.Contains("Spike Wheel") || random.Next(0, 3) == 1)).ToList(); // Too many spike wheels, weed them out a bit
                             }
 
-                            // Remove conflicting enemies that will be close to each other
+                            // Remove conflicting enemies
                             foreach(var kvp in addedEnemiesToXPos) {
-                                var enemyId = kvp.Key;
-                                var enemyXPos = kvp.Value;
-                                //bool inRange = Enumerable.Range(xPos - 0xD0, xPos + 0xD0).Contains(xPos);
-                                bool inRange = true;
-                                if (inRange && EnemyExclusions.Exclusions.Keys.Contains(enemyId)) {
-                                    var exclusions = EnemyExclusions.Exclusions[enemyId];
+                                var enemyToCompare = kvp.Key;
 
-                                    validEnemies.RemoveAll(enemy => exclusions.Contains(enemy.Value));
+                                if (enemyToCompare.EnemyNameId != EnemyNameId.NullEnemy) {
+                                    validEnemies.RemoveAll(enemy => {
+
+                                        bool conflict = false;
+                                        if (enemy.SpriteBank == enemyToCompare.SpriteBank) {
+                                            conflict = true;
+                                            EnemySameSpriteGroupings.SameSpriteGroupings.ForEach(grouping => conflict &= !(grouping.Contains(enemy.EnemyNameId) && grouping.Contains(enemyToCompare.EnemyNameId)));
+                                        }
+                                        return conflict;
+                                    });
                                 }
                             }
 
-                            Enemy selectedEnemy = validEnemies[random.Next(0, validEnemies.Count)];
+                            Enemy selectedEnemy = null;
+                            if (validEnemies.Count == 0) {
+                                selectedEnemy = new Enemy(EnemyNameId.NullEnemy, 0, false, false, false, false, false, false, 0);
+                            } else {
+                                selectedEnemy = validEnemies[random.Next(0, validEnemies.Count)];
+                            }
                             byte newYPos = (byte)(yPos + selectedEnemy.YOffset - enemyToReplace.YOffset);
 
                             patcher.AddRomModification(currentAddress, selectedEnemy.Value, selectedEnemy.Name);
                             patcher.AddRomModification(yPosLocation, newYPos, selectedEnemy.Name);
 
-                            addedEnemiesToXPos.Add(new KeyValuePair<byte, byte>(selectedEnemy.Value, xPos));
+                            addedEnemiesToXPos.Add(new KeyValuePair<Enemy, byte>(selectedEnemy, xPos));
                         }
                     });
 
