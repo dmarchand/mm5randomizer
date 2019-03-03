@@ -46,7 +46,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
                             } else if (enemyToReplace.IsInverted) {
                                 validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsInverted || enemy.IsFlying || enemy.CanReplaceFliers).ToList();
                             } else if (enemyToReplace.IsJetSkiOnly) {
-                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsJetSkiOnly).ToList();
+                                validEnemies = Enemies.EnemyData.Where(enemy => !enemy.IsBigBoy && !enemy.IsInverted).ToList();
                             } else if (enemyToReplace.IsUnderwaterOnly) {
                                 validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsUnderwaterOnly || enemy.IsFlying || enemy.CanReplaceFliers).ToList();
                             } else if (enemyToReplace.IsBigBoy) {
