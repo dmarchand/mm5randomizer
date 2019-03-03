@@ -21,6 +21,7 @@ namespace Megaman5Randomizer.Data.Enemies
         ChopperJoe = 0x0D,
         IronKuangeInverted = 0x0E,
         IronKuange = 0x0F,
+        PitGuard = 0x10,
         Graviton = 0x12,
         WaveCrack = 0x13,
         VerticalPakkan = 0x14,
