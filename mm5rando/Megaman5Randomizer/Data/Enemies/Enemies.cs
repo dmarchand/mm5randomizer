@@ -44,7 +44,7 @@ namespace Megaman5Randomizer.Data.Enemies
             new Enemy(EnemyNameId.MetMother, 7, false, false, false, false, false, true, 3),
             new Enemy(EnemyNameId.WarningCone, 4, false, false, false, false, false, false, 2),
             new Enemy(EnemyNameId.TonDale, 0, false, true, false, false, false, true, 3),
-            new Enemy(EnemyNameId.HangingBat, -7, false, false, true, false, false, false, 2), // Small sprite size, can coexist with rat, for example
+            new Enemy(EnemyNameId.Taban, 1, false, false, true, false, false, false, 2), // Small sprite size, can coexist with rat, for example
             new Enemy(EnemyNameId.RockSloan, -4, false, false, false, false, false, true, 3),
             new Enemy(EnemyNameId.PukaPuka, 0, false, false, false, false, false, false, 2),
             new Enemy(EnemyNameId.Missile, 0, false, true, false, false, false, false, 3),

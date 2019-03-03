@@ -43,7 +43,7 @@ namespace Megaman5Randomizer.Data.Enemies
         MetMother = 0x31,
         WarningCone = 0x32,
         TonDale = 0x33,
-        HangingBat = 0x34,
+        Taban = 0x34,
         RockSloan = 0x35,
         PukaPuka = 0x36,
         Missile = 0x37,

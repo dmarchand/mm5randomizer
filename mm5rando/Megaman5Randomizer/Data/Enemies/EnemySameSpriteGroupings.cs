@@ -12,7 +12,7 @@ namespace Megaman5Randomizer.Data.Enemies
             new List<EnemyNameId>() { EnemyNameId.GreenSpikeWheelFastLeft, EnemyNameId.GreenSpikeWheelFastRight, EnemyNameId.GreenSpikeWheelOtherRight, EnemyNameId.GreenSpikeWheelOtherRight }, // Green Spike Wheels
             new List<EnemyNameId>() { EnemyNameId.IronKuange, EnemyNameId.IronKuangeInverted }, // Iron traps
             new List<EnemyNameId>() { EnemyNameId.SusieG, EnemyNameId.SusieGInverted }, // Susie Gs
-            new List<EnemyNameId>() { EnemyNameId.Rat, EnemyNameId.HangingBat, EnemyNameId.Orbiter } // Tiny friends
+            new List<EnemyNameId>() { EnemyNameId.Rat, EnemyNameId.Taban, EnemyNameId.Orbiter } // Tiny friends
         };
     }
 }
