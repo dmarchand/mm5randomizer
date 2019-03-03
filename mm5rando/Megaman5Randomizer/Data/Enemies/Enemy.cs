@@ -6,7 +6,7 @@ namespace Megaman5Randomizer.Data.Enemies
         public byte Value { get; set; }
         public string Name { get; set; }
         public int YOffset { get; set; }
-        public bool IsFlyingOnly { get; set; }
+        public bool IsFlying { get; set; }
         public bool HasGravity { get; set; }
         public bool IsInverted { get; set; }
         public bool IsJetSkiOnly { get; set; }
@@ -22,7 +22,7 @@ namespace Megaman5Randomizer.Data.Enemies
             Name = enemyNameId.ToString();
             YOffset = yOffset;
             HasGravity = hasGravity;
-            IsFlyingOnly = isFlyingOnly;
+            IsFlying = isFlyingOnly;
             IsInverted = isInverted;
             IsJetSkiOnly = isJetSkiOnly;
             IsUnderwaterOnly = isUnderwaterOnly;

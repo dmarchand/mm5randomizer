@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Megaman5Randomizer.Data.Enemies
 {
-    public class EnemySameSpriteGroupings
+    public class EnemyCompatabilityGroupings
     {
         public static List<List<EnemyNameId>> SameSpriteGroupings = new List<List<EnemyNameId>>() {
             new List<EnemyNameId>() { EnemyNameId.BoatJoeLeft, EnemyNameId.BoatJoeRight }, // Boats

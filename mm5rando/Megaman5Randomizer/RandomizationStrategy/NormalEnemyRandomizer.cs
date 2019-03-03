@@ -41,10 +41,10 @@ namespace Megaman5Randomizer.RandomizationStrategy
                             var enemyToReplace = Enemies.EnemyData.Where(enemy => enemy.Value == enemyIDValue).First();
                             List<Enemy> validEnemies = null;
 
-                            if (enemyToReplace.IsFlyingOnly) {
-                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsFlyingOnly).ToList();
+                            if (enemyToReplace.IsFlying) {
+                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsFlying).ToList();
                             } else if (enemyToReplace.IsInverted) {
-                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsInverted).ToList();
+                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsInverted || enemy.IsFlying).ToList();
                             } else if (enemyToReplace.IsJetSkiOnly) {
                                 validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsJetSkiOnly).ToList();
                             } else if (enemyToReplace.IsUnderwaterOnly) {
@@ -52,8 +52,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
                             } else if (enemyToReplace.IsBigBoy) {
                                 validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsBigBoy).ToList();
                             } else {
-                                validEnemies = Enemies.EnemyData.Where(enemy => !enemy.IsFlyingOnly
-                                    && !enemy.IsInverted
+                                validEnemies = Enemies.EnemyData.Where(enemy => !enemy.IsInverted
                                     && !enemy.IsJetSkiOnly
                                     && !enemy.IsUnderwaterOnly
                                     && !enemy.IsBigBoy
@@ -70,7 +69,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
                                         bool conflict = false;
                                         if (enemy.SpriteBank == enemyToCompare.SpriteBank) {
                                             conflict = true;
-                                            EnemySameSpriteGroupings.SameSpriteGroupings.ForEach(grouping => conflict &= !(grouping.Contains(enemy.EnemyNameId) && grouping.Contains(enemyToCompare.EnemyNameId)));
+                                            EnemyCompatabilityGroupings.SameSpriteGroupings.ForEach(grouping => conflict &= !(grouping.Contains(enemy.EnemyNameId) && grouping.Contains(enemyToCompare.EnemyNameId)));
                                         }
                                         return conflict;
                                     });
