@@ -66,7 +66,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
                                 if (enemyToCompare.EnemyNameId != EnemyNameId.NullEnemy) {
                                     validEnemies.RemoveAll(enemy => {
                                         bool conflict = false;
-                                        if (enemy.SpriteBank == enemyToCompare.SpriteBank) {
+                                        if (enemy.SpriteBank == enemyToCompare.SpriteBank && enemy.EnemyNameId != enemyToCompare.EnemyNameId) {
                                             conflict = true;
                                             EnemyCompatabilityGroupings.SameSpriteGroupings.ForEach(grouping => conflict &= !(grouping.Contains(enemy.EnemyNameId) && grouping.Contains(enemyToCompare.EnemyNameId)));
                                         }
