@@ -14,8 +14,9 @@
 * Charge Man
 * Gyro Man
 
-# Stages With Issues
+# Playable (Beatable) Stages With Issues
 * Star Man - Rising/falling platforms leave enemies floating
+* Wave Man - Jet Ski section has floating enemies (some Dolphins spawn up high)
 
 # Notes for later:
 This section currently documents my wonderful and exciting adventures through the Megaman V ROM.
