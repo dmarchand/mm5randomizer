@@ -1,5 +1,14 @@
 # mm5randomizer
+## A full randomizer for Mega Man 5
 
+# Implemented Features
+* Random boss weapon rewards (including Rush Jet and S. Arrow)
+* Random Beat reward (Beat itself enters the random boss reward pool as well)
+* Enemy Randomization
+
+# Confirmed 100% Playable Stages
+* Stone Man
+* Gravity Man
 
 # Notes for later:
 This section currently documents my wonderful and exciting adventures through the Megaman V ROM.
