@@ -42,13 +42,13 @@ namespace Megaman5Randomizer.RandomizationStrategy
                             List<Enemy> validEnemies = null;
 
                             if (enemyToReplace.IsFlying) {
-                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsFlying).ToList();
+                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsFlying || enemy.CanReplaceFliers).ToList();
                             } else if (enemyToReplace.IsInverted) {
-                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsInverted || enemy.IsFlying).ToList();
+                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsInverted || enemy.IsFlying || enemy.CanReplaceFliers).ToList();
                             } else if (enemyToReplace.IsJetSkiOnly) {
                                 validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsJetSkiOnly).ToList();
                             } else if (enemyToReplace.IsUnderwaterOnly) {
-                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsUnderwaterOnly).ToList();
+                                validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsUnderwaterOnly || enemy.IsFlying || enemy.CanReplaceFliers).ToList();
                             } else if (enemyToReplace.IsBigBoy) {
                                 validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsBigBoy).ToList();
                             } else {
@@ -88,6 +88,9 @@ namespace Megaman5Randomizer.RandomizationStrategy
                             patcher.AddRomModification(yPosLocation, newYPos, selectedEnemy.Name);
 
                             addedEnemiesToXPos.Add(new KeyValuePair<Enemy, byte>(selectedEnemy, xPos));
+                        } else if(IrreplaceableEnemies.EnemyData.Exists(enemy => enemy.Value == enemyIDValue)) { // If this is an enemy we don't want to replace, store it for sprite bank reasons
+                            Enemy existingEnemy = IrreplaceableEnemies.EnemyData.Where(enemy => enemy.Value == enemyIDValue).First();
+                            addedEnemiesToXPos.Add(new KeyValuePair<Enemy, byte>(existingEnemy, 0));
                         }
                     });
 

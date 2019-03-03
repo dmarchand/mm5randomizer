@@ -14,9 +14,10 @@ namespace Megaman5Randomizer.Data.Enemies
         public bool IsUnderwaterOnly { get; set; }
         public bool IsHighRenderCost { get; set; }
         public bool IsBigBoy { get; set; }
+        public bool CanReplaceFliers { get; set; }
         public int SpriteBank { get; set; }
 
-        public Enemy(EnemyNameId enemyNameId, int yOffset, bool hasGravity, bool isFlyingOnly, bool isInverted, bool isJetSkiOnly, bool isUnderwaterOnly, bool isHighRenderCost, int spriteBank, bool isBigBoy = false, bool isBannedFromRandomization = false) {
+        public Enemy(EnemyNameId enemyNameId, int yOffset, bool hasGravity, bool isFlyingOnly, bool isInverted, bool isJetSkiOnly, bool isUnderwaterOnly, bool isHighRenderCost, int spriteBank, bool canReplaceFliers = false, bool isBigBoy = false, bool isBannedFromRandomization = false) {
             EnemyNameId = enemyNameId;
             Value = (byte)enemyNameId;
             Name = enemyNameId.ToString();
@@ -30,6 +31,7 @@ namespace Megaman5Randomizer.Data.Enemies
             IsBannedFromRandomization = isBannedFromRandomization;
             IsBigBoy = isBigBoy;
             SpriteBank = spriteBank;
+            CanReplaceFliers = CanReplaceFliers;
 
         }
     }
