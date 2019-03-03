@@ -16,7 +16,7 @@ namespace Megaman5Randomizer.Data.Enemies
             new Enemy(EnemyNameId.ShieldAttacker, -4, false, false, false, false, false, false, 2, true),
             new Enemy(EnemyNameId.BombDropper, 0, false, true, false, false, false, false, 3),
             new Enemy(EnemyNameId.MetTurret, -4, false, false, false, false, false, true, 3),
-            new Enemy(EnemyNameId.MetTrain, 0, true, false, false, false, false, true, 3),
+            new Enemy(EnemyNameId.MetTrain, -4, true, false, false, false, false, true, 3),
             new Enemy(EnemyNameId.Buoy, 0, false, false, false, true, false, false, 2),
             new Enemy(EnemyNameId.PowerMuscler, -0x0F, false, false, false, false, false, true, 2, false, true),
             new Enemy(EnemyNameId.ChopperJoe, 0, false, true, false, false, false, true, 2),
