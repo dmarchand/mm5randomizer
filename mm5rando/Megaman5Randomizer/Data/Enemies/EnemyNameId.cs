@@ -22,6 +22,7 @@ namespace Megaman5Randomizer.Data.Enemies
         IronKuangeInverted = 0x0E,
         IronKuange = 0x0F,
         Graviton = 0x12,
+        WaveCrack = 0x13,
         VerticalPakkan = 0x14,
         Fugene = 0x15,
         BomberSloan = 0x16,

@@ -7,6 +7,7 @@ namespace Megaman5Randomizer.Data.Enemies
     public class IrreplaceableEnemies
     {
         public static List<Enemy> EnemyData = new List<Enemy>() {
+            new Enemy(EnemyNameId.WaveCrack, 0, false, false, false, false, false, false, 2, false, false, true),
             new Enemy(EnemyNameId.DaidineDown, 0, false, false, false, false, false, false, 2, false, true),
             new Enemy(EnemyNameId.DaidineDownLeft, 0, false, false, false, false, false, false, 2, false, true),
             new Enemy(EnemyNameId.DaidineDownRight, 0, false, false, false, false, false, false, 2, false, true),
