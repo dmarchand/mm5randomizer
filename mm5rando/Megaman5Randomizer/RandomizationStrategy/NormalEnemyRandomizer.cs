@@ -56,7 +56,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
                                     && !enemy.IsJetSkiOnly
                                     && !enemy.IsUnderwaterOnly
                                     && !enemy.IsBigBoy
-                                    && (!enemy.Name.Contains("Spike Wheel") || random.Next(0, 3) == 1)).ToList(); // Too many spike wheels, weed them out a bit
+                                    && (!enemy.Name.ToLower().Contains("spikewheel") || random.Next(0, 4) == 1)).ToList(); // Too many spike wheels, weed them out a bit
                             }
 
                             // Remove conflicting enemies
