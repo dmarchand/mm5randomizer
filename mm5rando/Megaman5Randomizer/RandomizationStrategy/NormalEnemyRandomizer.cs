@@ -65,12 +65,12 @@ namespace Megaman5Randomizer.RandomizationStrategy
 
                                 if (enemyToCompare.EnemyNameId != EnemyNameId.NullEnemy) {
                                     validEnemies.RemoveAll(enemy => {
-
                                         bool conflict = false;
                                         if (enemy.SpriteBank == enemyToCompare.SpriteBank) {
                                             conflict = true;
                                             EnemyCompatabilityGroupings.SameSpriteGroupings.ForEach(grouping => conflict &= !(grouping.Contains(enemy.EnemyNameId) && grouping.Contains(enemyToCompare.EnemyNameId)));
                                         }
+                                        EnemyExclusionGroupings.ExclusionGroupings.ForEach(grouping => conflict |= (grouping.Contains(enemy.EnemyNameId) && grouping.Contains(enemyToCompare.EnemyNameId)));
                                         return conflict;
                                     });
                                 }

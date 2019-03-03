@@ -22,7 +22,7 @@ namespace Megaman5Randomizer.Data.Enemies
             new Enemy(EnemyNameId.ChopperJoe, 0, false, true, false, false, false, true, 2),
             new Enemy(EnemyNameId.IronKuangeInverted, -7, false, false, true, false, false, true, 3),
             new Enemy(EnemyNameId.IronKuange, 8, false, false, false, false, false, true, 3),
-            new Enemy(EnemyNameId.Graviton, 0, false, true, false, false, false, false, 3),
+            new Enemy(EnemyNameId.Graviton, 0, false, true, false, false, false, false, 2),
             new Enemy(EnemyNameId.VerticalPakkan, -5, false, false, false, false, false, false, 3),
             new Enemy(EnemyNameId.Fugene, 0, true, false, false, false, false, true, 3),
             new Enemy(EnemyNameId.BomberSloan, -4, false, false, false, false, false, true, 2),
@@ -55,7 +55,7 @@ namespace Megaman5Randomizer.Data.Enemies
             new Enemy(EnemyNameId.GreenSpikeWheelFastLeft, 4, false, false, false, false, false, false, 2),
             new Enemy(EnemyNameId.GreenSpikeWheelFastRight, 4, false, false, false, false, false, false, 2),
             new Enemy(EnemyNameId.GreenSpikeWheelRight, 4, false, false, false, false, false, false, 2),
-            new Enemy(EnemyNameId.GreenPukapuka, 0, false, true, false, false, false, false, 2),
+            new Enemy(EnemyNameId.GreenPukapuka, 0, false, true, false, false, false, false, 3),
             new Enemy(EnemyNameId.Camon, 0, false, false, false, false, false, false, 3),
             new Enemy(EnemyNameId.Lyric, 0, false, true, false, false, false, false, 2),
             new Enemy(EnemyNameId.GreenSpikeWheelOtherRight, 4, false, false, false, false, false, false, 2)
