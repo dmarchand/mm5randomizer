@@ -9,6 +9,8 @@
 # Confirmed 100% Playable Stages
 * Stone Man
 * Gravity Man
+* Napalm Man
+* Charge Man
 
 # Notes for later:
 This section currently documents my wonderful and exciting adventures through the Megaman V ROM.
