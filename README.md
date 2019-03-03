@@ -5,12 +5,17 @@
 * Random boss weapon rewards (including Rush Jet and S. Arrow)
 * Random Beat reward (Beat itself enters the random boss reward pool as well)
 * Enemy Randomization
+* Boss Weakness Randomization
 
 # Confirmed 100% Playable Stages
 * Stone Man
 * Gravity Man
 * Napalm Man
 * Charge Man
+* Gyro Man
+
+# Stages With Issues
+* Star Man - Rising/falling platforms leave enemies floating
 
 # Notes for later:
 This section currently documents my wonderful and exciting adventures through the Megaman V ROM.
