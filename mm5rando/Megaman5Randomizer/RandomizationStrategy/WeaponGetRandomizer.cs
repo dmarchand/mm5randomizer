@@ -45,9 +45,15 @@ namespace Megaman5Randomizer.RandomizationStrategy
             remainingWeapons.ForEach(weapon => {
                 Level stageToInsert = remainingRegularStages[random.Next(remainingRegularStages.Count)];
                 weaponRewards[stageToInsert].Add(weapon);
-                remainingWeapons.Remove(weapon);
                 remainingRegularStages.Remove(stageToInsert);
             });
+            remainingWeapons.Clear();
+
+            foreach(var kvp in weaponRewards) {
+                string weapons = "";
+                kvp.Value.ForEach(weapon => weapons += ", " + weapon.Name);
+                Console.WriteLine("Stage: " + kvp.Key.Name + " got weapons: " + weapons);
+            }
 
             WriteRockmanVRewardWeapon(letterRewardWeapon, patcher);
             WriteBossRewards(patcher);
