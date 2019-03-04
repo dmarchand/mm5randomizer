@@ -35,6 +35,7 @@ namespace Megaman5Randomizer.Data.Enemies
         Hirarian427 = 0x1C,
         Dacology = 0x1E,
         Dacone = 0x1F,
+        CrystalSpawner = 0x18,
         BoatJoeLeft = 0x28,
         DaidineUp = 0x20,
         DaidineUpRight = 0x21,
