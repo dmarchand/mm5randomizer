@@ -15,6 +15,14 @@
 * Gyro Man
 * Star Man
 * Crystal Man
+* Dark Man 1
+* Dark Man 2
+* Dark Man 3
+* Dark Man 4
+* Wily 1
+* Wily 2
+* Wily 3
+* Wily 4
 
 # Playable (Beatable) Stages With Issues
 * Wave Man - Jet Ski section has floating enemies (some Dolphins spawn up high)
