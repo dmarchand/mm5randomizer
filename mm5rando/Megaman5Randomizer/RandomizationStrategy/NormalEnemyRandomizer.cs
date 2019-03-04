@@ -6,15 +6,26 @@ using System.Text;
 using RomWriter;
 using System.Linq;
 using Megaman5Randomizer.Data.Enemies;
+using Megaman5Randomizer.Data.Levels;
 
 namespace Megaman5Randomizer.RandomizationStrategy
 {
     public class NormalEnemyRandomizer : IRandomizationStrategy
     {
         public void Randomize(Random random, RomPatcher patcher, Config config) {
+            InitializeSpecialStageScreens();
             Levels.LevelData.ForEach(level => {
                 ReplaceEnemiesRandomly(level, random, patcher);    
             });
+        }
+
+        void InitializeSpecialStageScreens() {
+            Level starManStage = Levels.LevelData.Where(level => level.Name.ToLower().Contains("star")).First();
+            var starManSpecials = starManStage.OffsetToSpecialEnemyList;
+            starManSpecials.Add(0x8BBF, GravityRequiredEnemyGroupings.Groupings);
+            starManSpecials.Add(0x8BC2, GravityRequiredEnemyGroupings.Groupings);
+            starManSpecials.Add(0x8BC4, GravityRequiredEnemyGroupings.Groupings);
+            starManSpecials.Add(0x8BC7, GravityRequiredEnemyGroupings.Groupings);
         }
 
         void ReplaceEnemiesRandomly(Level level, Random random, RomPatcher patcher) {
@@ -40,8 +51,11 @@ namespace Megaman5Randomizer.RandomizationStrategy
                         if (Enemies.EnemyData.Exists(enemy => enemy.Value == enemyIDValue)) {
                             var enemyToReplace = Enemies.EnemyData.Where(enemy => enemy.Value == enemyIDValue).First();
                             List<Enemy> validEnemies = null;
+                            var specialEnemyOffsets = level.OffsetToSpecialEnemyList;
 
-                            if (enemyToReplace.IsFlying) {
+                            if (specialEnemyOffsets.ContainsKey(currentAddress)) {
+                                validEnemies = Enemies.EnemyData.Where(enemy => specialEnemyOffsets[currentAddress].Contains(enemy.EnemyNameId)).ToList();
+                            } else if (enemyToReplace.IsFlying) {
                                 validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsFlying || enemy.CanReplaceFliers).ToList();
                             } else if (enemyToReplace.IsInverted) {
                                 validEnemies = Enemies.EnemyData.Where(enemy => enemy.IsInverted || enemy.IsFlying || enemy.CanReplaceFliers).ToList();

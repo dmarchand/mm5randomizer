@@ -32,6 +32,7 @@ namespace Megaman5Randomizer.Data.Enemies
             new Enemy(EnemyNameId.SusieGInverted, 0, false, false, true, false, false, false, 2),
             new Enemy(EnemyNameId.Yudon, -4, false, false, false, false, false, false, 2, false, true),
             new Enemy(EnemyNameId.Hirarian427, -8, false, false, true, false, false, false, 2, false),
+            new Enemy(EnemyNameId.Dacology, -7, false, false, false, false, false, false, 2, false, true),
             new Enemy(EnemyNameId.Dacone, -7, false, false, false, false, false, false, 2, false, true),
             new Enemy(EnemyNameId.BoatJoeLeft, 0, false, false, false, true, false, false, 3),
             new Enemy(EnemyNameId.MetScuba, 0, false, false, false, false, true, false, 2),

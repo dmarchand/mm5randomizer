@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Megaman5Randomizer.Data.Enemies;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Megaman5Randomizer.Data
+namespace Megaman5Randomizer.Data.Levels
 {
     public class Level
     {
@@ -28,6 +29,9 @@ namespace Megaman5Randomizer.Data
         public int YPosStart;
         public int ScreenNumberStart;
 
+
+        public Dictionary<int, List<EnemyNameId>> OffsetToSpecialEnemyList { get; }
+
         public Level(int startAddress, int enemyDataAddress, int weaponGetIndex, string name) {
             StartAddress = startAddress;
             EnemyDataAddress = enemyDataAddress;
@@ -35,6 +39,7 @@ namespace Megaman5Randomizer.Data
             WeaponGetIndex = weaponGetIndex;
             ScreenNumberStart = enemyDataAddress - SCREEN_NUMBER_OFFSET_BASE;
             YPosStart = enemyDataAddress - Y_POS_OFFSET_BASE;
+            OffsetToSpecialEnemyList = new Dictionary<int, List<EnemyNameId>>();
         }
     }
 }

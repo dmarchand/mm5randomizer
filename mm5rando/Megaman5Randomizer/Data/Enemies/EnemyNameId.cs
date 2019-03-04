@@ -33,6 +33,7 @@ namespace Megaman5Randomizer.Data.Enemies
         SusieGInverted = 0x1A,
         Yudon = 0x1B,
         Hirarian427 = 0x1C,
+        Dacology = 0x1E,
         Dacone = 0x1F,
         BoatJoeLeft = 0x28,
         DaidineUp = 0x20,
