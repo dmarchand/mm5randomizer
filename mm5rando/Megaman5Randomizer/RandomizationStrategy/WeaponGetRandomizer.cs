@@ -12,6 +12,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
     public class WeaponGetRandomizer : IRandomizationStrategy
     {
         private const int ROCKMANV_WEAPON_REWARD_ADDRESS = 0x03af29; // This determines what weapon is awarded when letters are collected
+        private const int ROCKMANV_MENU_DISPLAY_LETTERS_ADDRESS = 0x02499;
         private const int WEAPON_GET_MAP_BASE = 0x02EF0C; // The location of the weapon get offset map
         private const int WEAPON_GET_OFFSET_BASE = 0x02EF14; // The location that each weapon get offset adds to
         private const string WEAPON_GET_SINGLE_FORMAT = "YOU GOT {0}.";
@@ -63,6 +64,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
             // Patch the actual reward
             byte valueToWrite = InMemoryWeapon.WeaponData.Where(inMemWeapon => inMemWeapon.Name == weapon.Name).First().Value;
             patcher.AddRomModification(ROCKMANV_WEAPON_REWARD_ADDRESS, valueToWrite, weapon.Name);
+            patcher.AddRomModification(ROCKMANV_MENU_DISPLAY_LETTERS_ADDRESS, valueToWrite, weapon.Name);
             Console.Out.WriteLine("Wrote weapon to ROCKMANV reward: " + weapon.Name);
         }
 
