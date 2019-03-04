@@ -14,6 +14,7 @@
 * Charge Man
 * Gyro Man
 * Star Man
+* Crystal Man
 
 # Playable (Beatable) Stages With Issues
 * Wave Man - Jet Ski section has floating enemies (some Dolphins spawn up high)
