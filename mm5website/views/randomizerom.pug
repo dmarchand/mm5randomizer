@@ -1,4 +1,5 @@
 extends layout
 
 block content
-  h1= "Randomize Mega Man 5 ROM"
+  form(id="upload" action="/randomizer/randomizerom/upload", method="post", enctype="multipart/form-data")
+    input(type="file", name="rom" onchange="$('#upload').submit();")
