@@ -71,6 +71,19 @@ namespace Megaman5Randomizer.Data.Enemies
         Camon = 0x60,
         Lyric = 0x61,
         GreenSpikeWheelOtherRight = 0x7F,
-        NullEnemy = 0x6D
+        NullEnemy = 0x6D,
+        StoneMan = 0x62,
+        ChargeMan = 0x63,
+        GyroMan = 0x64,
+        GravityMan = 0x65,
+        CrystalMan = 0x66,
+        WaveMan = 0x67,
+        NapalmMan = 0x68,
+        StarMan = 0x69,
+        DarkMan2 = 0x6A,
+        DarkMan3 = 0x6B,
+        DarkMan = 0x6C,
+        DarkMan4 = 0x5E,
+        WilyMachine = 0x5F
     }
 }

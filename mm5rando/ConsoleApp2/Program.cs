@@ -16,6 +16,7 @@ namespace ConsoleApp2
                 config.RandomizeWeaponRewards = true;
                 config.RandomizeBeatReward = true;
                 config.RandomizeVulnerability = true;
+                config.RandomizeBosses = true;
                 
                 System.IO.File.Copy("base.nes", "test.nes", true);
                 randomizer.RandomizeRom(config, "test.nes");
@@ -24,6 +25,7 @@ namespace ConsoleApp2
                 config.RandomizeWeaponRewards = Boolean.Parse(args[1]);
                 config.RandomizeBeatReward = Boolean.Parse(args[2]);
                 config.RandomizeVulnerability = Boolean.Parse(args[3]);
+                config.RandomizeBosses = Boolean.Parse(args[4]);
                 randomizer.RandomizeRom(config, fileName);
             }
         }

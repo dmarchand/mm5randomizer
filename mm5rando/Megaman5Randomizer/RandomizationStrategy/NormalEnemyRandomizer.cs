@@ -70,7 +70,7 @@ namespace Megaman5Randomizer.RandomizationStrategy
                                     && !enemy.IsJetSkiOnly
                                     && !enemy.IsUnderwaterOnly
                                     && !enemy.IsBigBoy
-                                    && (!enemy.Name.ToLower().Contains("spikewheel") || random.Next(0, 4) == 1)).ToList(); // Too many spike wheels, weed them out a bit
+                                    && (!enemy.Name.ToLower().Contains("spikewheel") || random.Next(0, 5) == 1)).ToList(); // Too many spike wheels, weed them out a bit
                             }
 
                             // Remove conflicting enemies

@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26403.7
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Megaman5Randomizer", "Megaman5Randomizer\Megaman5Randomizer.csproj", "{6394A784-3B08-4109-A860-C970C3F1BC59}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Megaman5Randomizer", "Megaman5Randomizer\Megaman5Randomizer.csproj", "{6394A784-3B08-4109-A860-C970C3F1BC59}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RomWriter", "RomWriter\RomWriter.csproj", "{530061AA-BF9E-4FDA-85C5-E86DE0691667}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RomWriter", "RomWriter\RomWriter.csproj", "{530061AA-BF9E-4FDA-85C5-E86DE0691667}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomizerConsole", "ConsoleApp2\RandomizerConsole.csproj", "{EEF417B3-FEEE-4275-A0F4-497E3D91FC3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomizerConsole", "ConsoleApp2\RandomizerConsole.csproj", "{EEF417B3-FEEE-4275-A0F4-497E3D91FC3A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

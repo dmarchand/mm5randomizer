@@ -10,6 +10,7 @@ namespace Megaman5Randomizer
         public bool RandomizeBeatReward;
         public bool RandomizeEnemies;
         public bool RandomizeVulnerability;
+        public bool RandomizeBosses;
         public bool ChaosMode;
     }
 }

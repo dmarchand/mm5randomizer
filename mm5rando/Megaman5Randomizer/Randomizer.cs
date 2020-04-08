@@ -33,8 +33,11 @@ namespace Megaman5Randomizer
             if(config.RandomizeVulnerability) {
                 randomizers.Add(new WeaknessRandomizer());
             }
-            
 
+            if(config.RandomizeBosses) {
+                randomizers.Add(new BossRandomizer());
+            }
+            
             RunRandomizers(patcher, config);
 
             patcher.ApplyRomPatch();
