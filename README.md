@@ -6,6 +6,7 @@
 * Random Beat reward (Beat itself enters the random boss reward pool as well)
 * Enemy Randomization
 * Boss Weakness Randomization
+* Stage Boss Randomization
 
 # Confirmed 100% Playable Stages
 * Stone Man
